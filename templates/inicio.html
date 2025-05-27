@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>O Jogo Bíblico do Levi</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+        img {
+            max-width: 300px;
+            border-radius: 20px;
+            margin: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body onclick="iniciarMusica()">
+    <h1>O Jogo Bíblico do Levi</h1>
+    <img src="{{ url_for('static', filename='imagens/capa.jpg') }}" alt="Foto do Levi">
+
+    <p>Clique em qualquer lugar da tela para ativar o som!</p>
+
+    <button onclick="irParaJogo()">Estou pronto para começar!</button>
+
+    <audio id="somInicio" autoplay loop>
+        <source src="{{ url_for('static', filename='sons/atari.mp3') }}" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <script>
+        function iniciarMusica() {
+            const audio = document.getElementById('somInicio');
+            audio.play();
+        }
+
+        function irParaJogo() {
+            window.location.href = "/jogo";
+        }
+    </script>
+</body>
+</html>

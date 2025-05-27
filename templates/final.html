@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado Final</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #fefefe;
+            font-family: Arial, sans-serif;
+        }
+        .resultado {
+            margin-top: 50px;
+            font-size: 28px;
+        }
+        .mensagem {
+            margin-top: 20px;
+            font-size: 22px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resultado Final</h1>
+
+    <div class="resultado">
+        Sua pontuação foi: <strong>{{ score }} de 10</strong>
+    </div>
+
+    {% if score >= 8 %}
+        <div class="mensagem">Parabéns, você estudou muito!!! E ganhou dois presentes!!!</div>
+    {% elif score >= 6 %}
+        <div class="mensagem">Parabéns, você ganhou um presente!</div>
+    {% else %}
+        <div class="mensagem">Leia mais a Bíblia!</div>
+    {% endif %}
+
+    <!-- Sons finais -->
+    {% if score >= 6 %}
+        <audio autoplay>
+            <source src="{{ url_for('static', filename='sons/vitoria.mp3') }}" type="audio/mpeg">
+        </audio>
+    {% else %}
+        <audio autoplay>
+            <source src="{{ url_for('static', filename='sons/falha.mp3') }}" type="audio/mpeg">
+        </audio>
+    {% endif %}
+</body>
+</html>

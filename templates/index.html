@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>O Jogo bíblico do Levi</title>
+</head>
+<body>
+    <audio id="ticTacAudio" autoplay loop>
+  <source src="{{ url_for('static', filename='sons/tic-tac.mp3') }}" type="audio/mpeg">
+  Seu navegador não suporta áudio.
+</audio>
+
+
+    <!-- Imagem da pergunta atual -->
+    <img src="{{ url_for('static', filename='imagens/pergunta' ~ numero_pergunta ~ '.png') }}" alt="Imagem da pergunta" width="300">
+
+
+    <h2>O Jogo bíblico do Levi</h2>
+    <h1>Pergunta {{ pergunta_atual + 1 }}</h1>
+    <form action="/responder" method="post">
+        <p>{{ perguntas[pergunta_atual]["pergunta"] }}</p>
+        {% for opcao in perguntas[pergunta_atual]["opcoes"] %}
+            <label>
+                <input type="radio" name="resposta" value="{{ opcao }}" required> {{ opcao }}
+            </label><br>
+        {% endfor %}
+        <input type="hidden" name="pergunta_atual" value="{{ pergunta_atual }}">
+        <input type="hidden" name="score" value="{{ score }}">
+        <button type="submit">Responder</button>
+    </form>
+</body>
+</html>
